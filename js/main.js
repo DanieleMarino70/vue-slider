@@ -55,10 +55,17 @@ const app = Vue.createApp({
 
         switchToImage(i){
             this.activeImage = i;
-        }
+        },
+
+      
+
     },
 
-
+    created(){
+        setInterval(() => {
+            this.nextImage();
+        }, 3000);
+    }
     
 
 });
