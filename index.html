@@ -27,7 +27,7 @@
 	<link rel="stylesheet" href="./css/style.css">
 
 	<!-- VUE JS -->
-	<script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+	<script  src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
 
 	<!-- MAIN JS -->
@@ -40,90 +40,37 @@
 			<div class="my-carousel">
 				<div class="my-carousel-main" id="slides-container">
 	
-					<div class="slide active">
-						<img src="./img/01.webp">
+					<div v-for="(objSlide, index) of slides" :class="(index == activeImage) ? 'slide active' : 'slide' ">
+						<img :src="objSlide.image">
 						<div class="slide-text">
-							<h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita voluptatum unde
-								laboriosam
-								molestiae.</h2>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste deserunt doloremque hic eaque
-								culpa
-								aspernatur.</p>
+							<h2>{{objSlide.title}}</h2>
+							<p>{{objSlide.text}}</p>
 						</div>
 					</div>
-<!-- 	
-					<div class="slide">
-						<img src="./img/02.webp">
-						div.te
-						<div class="slide-text">
-							<h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita voluptatum unde
-								laboriosam
-								molestiae.</h2>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste deserunt doloremque hic eaque
-								culpa
-								aspernatur.</p>
-						</div>
-					</div>
-	
-					<div class="slide">
-						<img src="./img/03.webp">
-						<div class="slide-text">
-							<h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita voluptatum unde
-								laboriosam
-								molestiae.</h2>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste deserunt doloremque hic eaque
-								culpa
-								aspernatur.</p>
-						</div>
-					</div>
-	
-					<div class="slide">
-						<img src="./img/04.webp">
-						<div class="slide-text">
-							<h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita voluptatum unde
-								laboriosam
-								molestiae.</h2>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste deserunt doloremque hic eaque
-								culpa
-								aspernatur.</p>
-						</div>
-					</div>
-	
-					<div class="slide">
-						<img src="./img/05.webp">
-						<div class="slide-text">
-							<h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita voluptatum unde
-								laboriosam
-								molestiae.</h2>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste deserunt doloremque hic eaque
-								culpa
-								aspernatur.</p>
-						</div>
-					</div> -->
+
 				</div>
+				<!-- <div class="slide active">
+					<img src="./img/01.webp">
+					<div class="slide-text">
+						<h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita voluptatum unde
+							laboriosam
+							molestiae.</h2>
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste deserunt doloremque hic eaque
+							culpa
+							aspernatur.</p>
+					</div>
+				</div> -->
 	
 				<div class="my-carousel-thumbs" id="thumbs-container">
-					<!-- <div class="col thumb">
-						<img src="./img/01.webp">
+					<div class="col thumb"  v-for="(objSlide, index) of slides" @click="switchToImage(index)">
+						<img :src="objSlide.image">
 					</div>
-					<div class="col thumb">
-						<img src="./img/02.webp">
-					</div>
-					<div class="col thumb">
-						<img src="./img/03.webp">
-					</div>
-					<div class="col thumb">
-						<img src="./img/04.webp">
-					</div>
-					<div class="col thumb">
-						<img src="./img/05.webp">
-					</div> -->
 				</div>
 			</div>
 	
 			<div class="my-carousel-controls">
 	
-				<button class="btn btn-outline-dark" id="prev">
+				<button class="btn btn-outline-dark" id="prev" @click="prevImage()">
 					<i class="fa-solid fa-chevron-left"></i>
 				</button>
 	
@@ -135,7 +82,7 @@
 					<i class="fa-solid fa-stop"></i>
 				</button>
 	
-				<button class="btn btn-outline-dark" id="next">
+				<button class="btn btn-outline-dark" id="next" @click="nextImage()">
 					<i class="fa-solid fa-chevron-right"></i>
 				</button>
 			</div>
